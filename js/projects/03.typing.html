@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+        }
+
+        .container {
+            padding: 200px;
+            font-size: 30px;
+            text-align: justify;
+        }
+
+        .correct {
+
+            background-color: green;
+
+        }
+
+        .wrong {
+
+            background-color: tomato;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <p class="para">
+
+        </p>
+
+    </div>
+
+    <script>
+
+        let paragraphContent = " Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit possimus sequi dolorem eaque ab? Ipsa velit, obcaecati dolorem quaerat minima at quisquam voluptatibus iusto vel asperiores delectus quo sed doloremque fugit. Rerum dolorem sed odit quibusdam libero magni nobis eos veritatis optio animi provident, voluptatibus iusto molestias harum laboriosam quos deserunt laudantium dolorum amet atque tempore sapiente nam? Repellendus saepe maxime dignissimos. Aspernatur sit ipsum ratione quasi neque iure, praesentium accusamus architecto numquam id, obcaecati aut accusantium doloribus magnam unde explicabo quaerat, ad enim similique nihil. Ex iusto eveniet consequuntur molestiae nobis laboriosam! Dolor aliquid et, incidunt suscipit vero recusandae!";
+
+        let para = document.querySelector('.para')
+        let count = 0
+        let spans = []
+
+        function createParagraph() {
+
+            for (let i = 0; i < paragraphContent.length; i++) {
+
+                let span = document.createElement('span')
+                spans.push(span)
+                span.innerText = paragraphContent[i]
+                para.appendChild(span)
+
+            }
+
+        }
+
+
+        function keyPressHandler(event) {
+
+            let typedWord = event.key
+            count = count + 1
+
+            if (typedWord == paragraphContent[count - 1]) {
+
+                spans[count - 1].classList.add('correct')
+            } else {
+
+                spans[count - 1].classList.add('wrong')
+            }
+        }
+
+
+        createParagraph()
+
+
+        document.addEventListener('keyup', keyPressHandler)
+
+
+
+    </script>
+
+</body>
+
+</html>

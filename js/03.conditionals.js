@@ -34,7 +34,7 @@ if(age>18 || country=='india'){
 
 
 if(age!=18){
-
+    console.log('Age is not  =  18')
 }
 
 if(!age>18){
