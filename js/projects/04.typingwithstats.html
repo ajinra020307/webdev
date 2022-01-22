@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+        }
+
+        .container {
+            padding: 200px;
+            font-size: 30px;
+            text-align: justify;
+        }
+
+        .correct {
+
+            background-color: green;
+
+        }
+
+        .wrong {
+
+            background-color: tomato;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <div class="container">
+
+        <p class="para">
+
+        </p>
+        <div class="stats">
+            <p class="correct-words">
+
+            </p>
+            <p class="wrong-words">
+
+            </p>
+        </div>
+
+    </div>
+
+    <script>
+
+
+        let paragraphContent = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit possimus sequi dolorem eaque ab? Ipsa velit, obcaecati dolorem quaerat minima at quisquam voluptatibus iusto vel asperiores delectus quo sed doloremque fugit. Rerum dolorem sed odit quibusdam libero magni nobis eos veritatis optio animi provident, voluptatibus iusto molestias harum laboriosam quos deserunt laudantium dolorum amet atque tempore sapiente nam? Repellendus saepe maxime dignissimos. Aspernatur sit ipsum ratione quasi neque iure, praesentium accusamus architecto numquam id, obcaecati aut accusantium doloribus magnam unde explicabo quaerat, ad enim similique nihil. Ex iusto eveniet consequuntur molestiae nobis laboriosam! Dolor aliquid et, incidunt suscipit vero recusandae!";
+
+        let para = document.querySelector('.para')
+        let correctPara = document.querySelector('.correct-words')
+        let wrongPara = document.querySelector('.wrong-words')
+
+        let count = 0
+        let spans = []
+
+        let correctWords = 0
+        let wrongWords = 0
+
+        function addParagraph(){
+
+
+            for(let i=0;i<paragraphContent.length;i++){
+
+                let letter = paragraphContent[i]
+                let span = document.createElement('span')
+                span.innerText = letter
+                para.appendChild(span)
+                spans.push(span)
+
+
+            }
+
+        }
+
+        addParagraph()
+
+        function keyDownHandler(event){
+
+            let userinput = event.key
+
+            if(userinput=='Backspace'){
+
+                count = count-1
+                spans[count].classList.remove('correct')
+                spans[count].classList.remove('wrong')
+                return
+
+            }
+
+            if(userinput==paragraphContent[count]){
+
+                spans[count].classList.add('correct')
+                correctWords = correctWords + 1
+            }else{
+
+                spans[count].classList.add('wrong')
+                wrongWords = wrongWords + 1
+
+            }
+
+            correctPara.innerText = 'Correct Words = ' + correctWords
+            wrongPara.innerText = 'Wrong Words = ' + wrongWords
+            count = count + 1
+
+
+        }
+
+
+        document.addEventListener('keydown',keyDownHandler)
+
+
+    </script>
+
+
+
+</body>
+
+</html>
