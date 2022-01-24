@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0
+        }
+
+        main {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center
+        }
+
+        .app {
+
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            padding: 40px;
+
+        }
+
+        .correct {
+
+            background-color: green;
+
+        }
+
+        .wrong {
+
+            background-color: tomato;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+
+    <main>
+
+        <div class="app">
+            <div class="content"></div>
+        </div>
+
+    </main>
+
+
+    <script>
+
+        let contentDiv = document.querySelector('.content')
+        let words = ['hellor', 'world', 'name', 'dog', 'sheep', 'fun', 'fake', 'red']
+
+
+        let wordCounter = 0
+        let letterCounter = 0
+        let spans = []
+
+        let startTime = undefined;
+        let endTime = undefined;
+
+
+
+        function showGameOver() {
+
+            alert('Game over try again')
+
+        }
+
+        function showScore(startTime, endTime) {
+
+            let usedTime = endTime - startTime;
+            let seconds = usedTime / 1000
+
+            let minScore = 0;
+            let maxScore = 100;
+
+            
+            alert('Your time is ' + seconds + ' seconds')
+
+
+        }
+
+        function showWord(i) {
+            contentDiv.innerHTML = ''
+            let word = words[i]
+
+            for (let i = 0; i < word.length; i++) {
+
+                let span = document.createElement('span')
+                span.innerText = word[i]
+                contentDiv.appendChild(span)
+                spans.push(span)
+
+            }
+
+        }
+
+        showWord(0)
+
+        function keyUpHandler(event) {
+
+            let typedLetter = event.key
+            let word = words[wordCounter]
+            let letter = word[letterCounter]
+
+
+            if (letterCounter == 0 && wordCounter == 0) {
+
+                startTime = new Date().getTime();
+
+            }
+
+            if (letter == typedLetter) {
+            
+                spans[letterCounter].classList.add('correct')
+
+                if (letterCounter == word.length - 1) {
+
+                    if (wordCounter == words.length - 1) {
+                        endTime = new Date().getTime();
+                        showScore(startTime, endTime)
+                        return
+
+                    }
+
+                    wordCounter += 1;
+                    spans = []
+                    showWord(wordCounter)
+                    letterCounter = 0
+                    return
+
+                }
+
+            } else {
+
+                spans[letterCounter].classList.add('wrong')
+
+                showGameOver()
+            }
+
+            letterCounter += 1
+
+
+
+        }
+
+
+        document.addEventListener('keyup', keyUpHandler)
+
+
+    </script>
+
+
+
+</body>
+
+</html>
