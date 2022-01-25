@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        body{
+            height:100vh;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+
+
+    <script>
+
+        let audios = {
+            'a' : new Audio('./a.wav'),
+            'b' : new Audio('./a.wav'),
+            'c' : new Audio('./a.wav'),
+            'd' : new Audio('./a.wav'),
+            'e' : new Audio('./a.wav'),
+            'f' : new Audio('./a.wav'),
+            'g' : new Audio('./a.wav'),
+            'h' : new Audio('./a.wav'),
+            'i' : new Audio('./a.wav'),
+            'j' : new Audio('./a.wav'),
+            'k' : new Audio('./a.wav'),
+            'l' : new Audio('./a.wav'),
+            'm' : new Audio('./a.wav'),
+            'n' : new Audio('./a.wav'),
+            'o' : new Audio('./a.wav'),
+            'p' : new Audio('./a.wav'),
+            'q' : new Audio('./a.wav'),
+            'r' : new Audio('./a.wav'),
+            's' : new Audio('./a.wav'),
+            't' : new Audio('./a.wav'),
+            'u' : new Audio('./a.wav'),
+            'v' : new Audio('./a.wav'),
+            'w' : new Audio('./a.wav'),
+            'x' : new Audio('./a.wav'),
+            'y' : new Audio('./a.wav'),
+            'z' : new Audio('./a.wav'),
+
+        }
+
+     
+        let lastAudio = undefined;
+
+
+        function playMusic(event){
+
+            if(lastAudio) {
+                lastAudio.pause();
+            }
+
+            var randomColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+
+            let key = event.key;
+
+            let audio = audios[key]
+            lastAudio =audio
+
+            audio.play()
+            document.body.style.backgroundColor = randomColor
+            
+
+        }
+
+        document.addEventListener('keyup',playMusic)
+     
+
+    </script>
+
+</body>
+
+</html>

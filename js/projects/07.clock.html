@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            background: black;
+        }
+
+        .clock {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            color: #17D4FE;
+            font-size: 60px;
+            font-family: Orbitron;
+            letter-spacing: 7px;
+
+
+
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id="MyClockDisplay" class="clock">
+
+      
+
+    </div>
+
+    <script>
+
+        let clock = document.querySelector('#MyClockDisplay')
+
+        function clockFunction() {
+
+            let dateObj = new Date();
+
+            let minute = dateObj.getMinutes()
+            let second = dateObj.getSeconds()
+            let hour = dateObj.getHours()
+
+            if(hour>12){
+                hour = hour -12
+            }
+
+            clock.innerText = hour + " : " + minute + " : " + second
+
+
+        }
+
+        setInterval(clockFunction, 1000)
+
+    </script>
+
+
+</body>
+
+</html>
