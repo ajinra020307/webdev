@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        main {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .question-answer {
+            display: flex;
+            flex-direction: column;
+            max-width: 800px;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            padding: 30px
+        }
+
+        .question {
+            font-size: 30px;
+        }
+
+        .choices {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        #nxtbtn {
+            padding: 10px 30px;
+            border: none;
+            font-weight: bold;
+            margin-top: 30px;
+        }
+
+        #nxtbtn:hover {
+            background: tomato;
+            color: white;
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <main>
+        <div class="app">
+            <div class="question-answer">
+                <div class="question">
+
+                </div>
+                <div class="choices">
+                    <div>
+                        <input class="choice-input" type="radio" name="f" />
+                        <span></span>
+                    </div>
+                    <div>
+                        <input class="choice-input" type="radio" name="f" />
+                        <span></span>
+                    </div>
+                    <div>
+                        <input class="choice-input" type="radio" name="f" />
+                        <span></span>
+                    </div>
+                    <div>
+                        <input class="choice-input" type="radio" name="f" />
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="buttons">
+            <button id="nxtbtn">Next</button>
+        </div>
+
+    </main>
+
+
+    <script>
+
+        let questions = [
+            {
+                question: "How are you?",
+                choices: [2, 3, 4, 5],
+                answer: 3,
+
+            },
+            {
+                question: "How are  dsfsdf sdyou?",
+                choices: [2, 3, 4, 5],
+                answer: 3
+            },
+            {
+                question: "How are  ds sdff sdyou?",
+                choices: [2, 3, 4, 5],
+                answer: 3
+            },
+            {
+                question: "How are sd asfadfs  you?",
+                choices: [2, 3, 4, 5],
+                answer: 3
+            }
+        ]
+
+
+        // init
+
+        let appDiv = document.querySelector('.app')
+        let nextBtn = document.querySelector('#nxtbtn')
+        let questionNumber = 0
+
+        function addQuestion(questionNo) {
+
+            let questionData = questions[questionNo]
+            let question = questionData.question
+            let choices = questionData.choices
+
+            let questionDiv = document.querySelector('.question');
+            questionDiv.innerText = question
+
+            let choiceSpans = document.querySelectorAll('.choices span')
+            choiceSpans[0].innerText = choices[0]
+            choiceSpans[1].innerText = choices[1]
+            choiceSpans[2].innerText = choices[2]
+            choiceSpans[3].innerText = choices[3]
+
+
+        }
+
+        addQuestion(0)
+
+        nextBtn.addEventListener('click', function () {
+            let inputs = document.querySelectorAll('.choice-input')
+            let uindex = undefined
+
+            inputs.forEach(function(input,index){
+
+                if(input.checked==true){
+                    uindex = index
+                }
+            })
+
+            questions[questionNumber].userSelectedAnswer = questions[questionNumber].choices[uindex]
+         
+            questionNumber +=1;
+
+            let totalQuestions = questions.length;
+
+            if(totalQuestions==questionNumber){
+
+                let correctAnswers = 0;
+                let wrongAnswers = 0;
+
+                questions.forEach(function(question){
+                    if(question.answer == question.userSelectedAnswer) {
+                        correctAnswers+=1;
+                    }else{
+                        wrongAnswers+=1
+                    }
+                })
+
+                alert('You have written ' + correctAnswers + ' correctly')
+
+            }
+
+
+            addQuestion(questionNumber)
+        })
+
+    </script>
+
+</body>
+
+</html>

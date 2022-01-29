@@ -1,64 +1,33 @@
 
+// creating objects
 
-let mobile = {
-    'name':'poco',
-    'weight': '200gm',
-    height:'5.7'
+let mobileDetails = {
+    height:'5. inches',
+    "weight": '200gms',
+    updates: [1,2,3,4,5],
+    otherDetails: {
+        a:{
+            b:{
+                hello:"dfsdklfjklsjdfls"
+            }
+        }
+    },
+    call: function(){
+        console.log('hello')
+    },
 }
 
-// getting values from objects
-console.log(mobile.name)
-console.log(mobile['name'])
+// accessing values
 
-// array of objects
+console.log(mobileDetails.weight)
+console.log(mobileDetails['weight'])
 
-var students = [
-    {
-        name:'Ajin',
-        age: 23,
-        class: 12,
-        marks:{
-            'english':80,
-            'tamil':20,
-            'maths':30,
-            'science':44,
-            'social': 55
-        }
-    },
-    {
-        name:'Mukesh',
-        age: 23,
-        class: 12,
-        marks:{
-            'english':80,
-            'tamil':20,
-            'maths':30,
-            'science':44,
-            'social': 55
-        }
-    },
-    {
-        name:'shagar',
-        age: 23,
-        class: 12,
-        marks:{
-            'english':80,
-            'tamil':20,
-            'maths':30,
-            'science':44,
-            'social': 55
-        }
-    },
-    {
-        name:'sreeju',
-        age: 23,
-        class: 12,
-        marks:{
-            'english':80,
-            'tamil':20,
-            'maths':30,
-            'science':44,
-            'social': 55
-        }
-    }
-]
+
+// changing values
+
+mobileDetails.height = '444'
+mobileDetails.color = 'red'
+
+console.log(mobileDetails)
+
+mobileDetails.call()

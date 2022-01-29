@@ -61,3 +61,8 @@ dd.splice(3,0,'fs','fss','fsss')
 
 let newArray = dd.slice(1,6)
 
+// complex arrays
+
+let xyz = [
+    1,"dfsd",false,true,[1,2,3,4],[3,4,[3,4]],{"dfs":"fsdfs","fsdfs":"fsdsfs"}
+]

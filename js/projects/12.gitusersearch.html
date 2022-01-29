@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *{
+            margin: 0;padding:0
+        }
+        .search{
+            /* text-align: center; */
+            display:flex;
+            flex-direction: column;
+            justify-content:center;
+            align-items:center;
+            margin-top:100px;
+            gap:30px
+        }
+
+        .search input{
+            padding: 10px 20px;
+            width:400px;
+            border: 1px solid rgba(0, 0, 0, 0.3);
+        }
+
+        .search button{
+            padding: 5px 20px;
+            color: white;background:cornflowerblue;
+            border:none
+        }
+
+        .user-container{
+            display:flex;
+            flex-direction: column;
+            width: 400px;
+            gap:20px
+
+        }
+
+        .result{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            margin-top:40px;
+        }
+
+        .profile-pic{
+            height: 100px;width:100px;background:grey
+        }
+
+        .profile-pic img{
+            width:100%
+        }
+
+        .details{
+            display:flex;
+            flex-direction: column;
+            gap:10px;
+        }
+    </style>
+
+</head>
+<body>
+
+    <main>
+        <div class="search">
+            <input type="text" id="search-input" placeholder="Search for users"/>
+            <button id="search-button">Search</button>
+        </div>
+        <div class="result">
+            <!-- <div class="user-container">
+                <div class="profile-pic">
+                    <img src="" alt="">
+                </div>
+                <div class="user-bio">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa culpa nostrum eligendi delectus voluptatem placeat accusamus impedit at sapiente reprehenderit!
+                </div>
+                <div class="details">
+                    <span>Name -> Ajin R</span>
+                    <span>Name -> Ajin R</span>
+                    <span>Name -> Ajin R</span>
+                    <span>Name -> Ajin R</span>
+                    <span>Name -> Ajin R</span>
+                    <span>Name -> Ajin R</span>
+                    <span>Name -> Ajin R</span>
+
+                </div>
+            </div> -->
+        </div>
+
+       
+    </main>
+
+
+    <script>
+
+        let userInput = document.getElementById('search-input')
+        let searchButton = document.getElementById('search-button')
+        let resultDiv = document.querySelector('.result')
+        let url = 'https://api.github.com/users/'
+
+        searchButton.addEventListener('click',getUserDetails)
+
+        function getUserDetails(){
+
+            // get input
+            let inputValue = userInput.value;
+            
+            // combine url with username
+            let finalUrl = url + inputValue
+
+            // fetch data from server
+
+            fetch(finalUrl)  // returns promise
+                .then(function(response){
+                    return response.json() // returns another promise
+                })
+                .then(function(data){
+                    showDetailsinUi(data)
+                })
+
+        }
+
+
+
+        function showDetailsinUi(data){
+
+            resultDiv.innerHTML = ""
+
+            if(data.message=='Not Found'){
+
+                resultDiv.innerText = 'User Not Found'
+                return
+            }
+
+            let userContainerDiv = document.createElement('div');
+            userContainerDiv.classList.add('user-container')
+
+            let profilePicDiv = document.createElement('div');
+            profilePicDiv.classList.add('profile-pic')
+
+            let profileImage = document.createElement('img');
+            profileImage.src = data.avatar_url
+
+            profilePicDiv.appendChild(profileImage)
+
+            let userBioDiv = document.createElement('div');
+            userBioDiv.classList.add('user-bio')
+
+            userBioDiv.innerText = data.bio;
+
+            userContainerDiv.appendChild(profilePicDiv)
+            userContainerDiv.appendChild(userBioDiv)
+
+            resultDiv.appendChild(userContainerDiv)
+
+        }
+
+    </script>
+    
+</body>
+</html>
